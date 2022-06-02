@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Pig Game</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" integrity="sha384-/frq1SRXYH/bSyou/HUp/hib7RVN1TawQYja658FEOodR/FQBKVqT9Ol+Oz3Olq5" crossorigin="anonymous">
+  </head>
+  <body>
+    <h1>PIG GAME</h1>
+    <main>
+      <section class="player player--0 player--active">
+        <h2 class="name" id="name--0" contenteditable="true">Player 1</h2>
+        <p class="score" id="score--0">43</p>
+        <div class="current">
+          <p class="current-label">Current</p>
+          <p class="current-score" id="current--0">1</p>
+        </div>
+      </section>
+      <section class="player player--1">
+        <h2 class="name" id="name--1" contenteditable="true">Player 2</h2>
+        <p class="score" id="score--1">24</p>
+        <div class="current">
+          <p class="current-label">Current</p>
+          <p class="current-score" id="current--1">1</p>
+        </div>
+      </section>
+
+      <img src="dice-5.png" alt="Playing dice" class="dice" />
+      <button class="btn btn--new"><i class="fa-solid fa-circle-plus"></i> New game</button>
+      <button class="btn btn--roll"><i class="fa-solid fa-rotate"></i> Roll dice</button>
+      <button class="btn btn--hold"><i class="fa-solid fa-circle-check"></i> Hold</button>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
