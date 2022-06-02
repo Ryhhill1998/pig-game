@@ -26,6 +26,9 @@ const resetGame = function() {
   p1ScoreEl.textContent = p2ScoreEl.textContent = 0;
   p1CurrScoreEl.textContent = p2CurrScoreEl.textContent = 0;
   diceImgEl.classList.add("hidden");
+  newGameBtn.classList.add("hidden");
+  rollDiceBtn.classList.remove("hidden");
+  holdScoreBtn.classList.remove("hidden");
 
   if (activePlayer !== undefined) document.querySelector(`.player--${activePlayer}`).classList.remove("player--winner");
 
@@ -93,6 +96,9 @@ const endGame = function() {
   document.querySelector(`.player--${activePlayer}`).classList.add("player--winner");
   document.querySelector(`.player--${activePlayer}`).classList.remove("player--active");
   diceImgEl.classList.add("hidden");
+  newGameBtn.classList.remove("hidden");
+  rollDiceBtn.classList.add("hidden");
+  holdScoreBtn.classList.add("hidden");
 };
 
 // --------------- GAME FUNCTIONALITY --------------- //
