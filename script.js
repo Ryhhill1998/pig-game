@@ -87,7 +87,7 @@ const checkDiceRoll = function(diceRoll) {
 
 // create function to check winner
 const checkPlayerWins = function() {
-  return scores[activePlayer] >= 10 ? true : false;
+  return scores[activePlayer] >= 100 ? true : false;
 };
 
 // create end game function
