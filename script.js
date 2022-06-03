@@ -10,7 +10,8 @@ const p2ScoreEl = document.getElementById("score--1");
 const p1CurrScoreEl = document.getElementById("current--0");
 const p2CurrScoreEl = document.getElementById("current--1");
 
-const diceImgEl = document.querySelector(".dice");
+const diceImgEl1 = document.querySelector(".dice--1");
+const diceImgEl2 = document.querySelector(".dice--2");
 
 const newGameBtn = document.querySelector(".btn--new");
 const rollDiceBtn = document.querySelector(".btn--roll");
@@ -19,19 +20,20 @@ const holdScoreBtn = document.querySelector(".btn--hold");
 // --------------- GAME SETUP --------------- //
 
 // create game variables
-let diceRoll, scores, currentScore, activePlayer, gameOn;
+let diceRoll1, diceRoll2, scores, currentScore, activePlayer, gameOn;
 
 // set initial constraints with reset function
 const resetGame = function() {
-  p1ScoreEl.textContent = p2ScoreEl.textContent = 0;
-  p1CurrScoreEl.textContent = p2CurrScoreEl.textContent = 0;
-  diceImgEl.classList.add("hidden");
+
+  hideDice();
   newGameBtn.classList.add("hidden");
   rollDiceBtn.classList.remove("hidden");
   holdScoreBtn.classList.remove("hidden");
 
   if (activePlayer !== undefined) document.querySelector(`.player--${activePlayer}`).classList.remove("player--winner");
 
+  p1ScoreEl.textContent = p2ScoreEl.textContent = 0;
+  p1CurrScoreEl.textContent = p2CurrScoreEl.textContent = 0;
   scores = [0,0];
   currentScore = 0;
   gameOn = true;
@@ -42,15 +44,18 @@ const resetGame = function() {
 
 // create functions to change appearance of DOM elements
 const hideDice = function() {
-  diceImgEl.classList.add("hidden");
+  diceImgEl1.classList.add("hidden");
+  diceImgEl2.classList.add("hidden");
 };
 
 const showDice = function() {
-  diceImgEl.classList.remove("hidden");
+  diceImgEl1.classList.remove("hidden");
+  diceImgEl2.classList.remove("hidden");
 };
 
-const updateDiceImg = function(newImgSrc) {
-  diceImgEl.src = newImgSrc;
+const updateDiceImg = function(newImgSrc1, newImgSrc2) {
+  diceImgEl1.src = newImgSrc1;
+  diceImgEl2.src = newImgSrc2;
 };
 
 const updateCurrScore = function() {
@@ -76,11 +81,15 @@ const rollDice = function() {
 };
 
 // create function to check if dice roll is not 1 and add to player's current score
-const checkDiceRoll = function(diceRoll) {
-  if (diceRoll === 1) {
+const checkDiceRoll = function(diceRoll1, diceRoll2) {
+  if (diceRoll1 === 1 && diceRoll2 === 1) {
+    scores[activePlayer] = 0;
+    updateScore();
+    switchPlayer();
+  } else if (diceRoll1 === 1 || diceRoll2 === 1) {
     switchPlayer();
   } else {
-    currentScore += diceRoll;
+    currentScore += (diceRoll1 + diceRoll2);
     updateCurrScore();
   }
 };
@@ -93,12 +102,16 @@ const checkPlayerWins = function() {
 // create end game function
 const endGame = function() {
   gameOn = false;
+
   document.querySelector(`.player--${activePlayer}`).classList.add("player--winner");
   document.querySelector(`.player--${activePlayer}`).classList.remove("player--active");
-  diceImgEl.classList.add("hidden");
   newGameBtn.classList.remove("hidden");
   rollDiceBtn.classList.add("hidden");
   holdScoreBtn.classList.add("hidden");
+  hideDice();
+
+  currentScore = 0;
+  updateCurrScore();
 };
 
 // --------------- GAME FUNCTIONALITY --------------- //
@@ -109,10 +122,11 @@ resetGame();
 // add click event listener to roll dice button to change the dice img
 rollDiceBtn.addEventListener("click", function() {
   if (!gameOn) return;
-  diceRoll = rollDice();
-  updateDiceImg(`dice-${diceRoll}.png`);
+  diceRoll1 = rollDice();
+  diceRoll2 = rollDice();
+  updateDiceImg(`dice-${diceRoll1}.png`, `dice-${diceRoll2}.png`);
   showDice();
-  checkDiceRoll(diceRoll);
+  checkDiceRoll(diceRoll1, diceRoll2);
 });
 
 // add click event listener to hold button to add current score to player score

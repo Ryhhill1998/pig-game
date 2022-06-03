@@ -5,7 +5,7 @@
 }
 
 html {
-  font-size: 62.5%;
+  font-size: 0.625rem;
   box-sizing: border-box;
 }
 
@@ -24,7 +24,7 @@ body {
 /* LAYOUT */
 h1 {
   font-size: 3rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.9);
   position: absolute;
   top: 8%;
   left: 50%;
@@ -34,7 +34,8 @@ h1 {
 
 main {
   position: relative;
-  width: 65vw;
+  width: 100%;
+  max-width: 65vw;
   height: 75vh;
   background-color: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(200px);
@@ -46,8 +47,9 @@ main {
 }
 
 .player {
-  flex: 50%;
-  padding: 9rem;
+  width: 100%;
+  max-width: 32.5vw;
+  padding: 9%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -100,7 +102,7 @@ main {
 .current-label {
   text-transform: uppercase;
   margin-bottom: 1rem;
-  font-size: 1.7vw;
+  font-size: 1.7rem;
   color: white;
 }
 
@@ -131,13 +133,13 @@ main {
 }
 
 .btn--new {
-  top: 4rem;
+  top: 35vh;
 }
 .btn--roll {
-  top: 39.3rem;
+  top: 52vh;
 }
 .btn--hold {
-  top: 46.1rem;
+  top: 60vh;
 }
 
 i {
@@ -158,10 +160,17 @@ i {
 .dice {
   position: absolute;
   left: 50%;
-  top: 16.5rem;
-  transform: translateX(-50%);
+  top: 30vh;
   height: 10rem;
   box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.2);
+}
+
+.dice--1 {
+  transform: translateX(-120%);
+}
+
+.dice--2 {
+  transform: translateX(20%);
 }
 
 .hidden {
@@ -175,4 +184,31 @@ i {
 .player--winner .name {
   font-weight: 700;
   color: #00ADB5;
+}
+
+/* media queries */
+@media all and (max-width: 768px) {
+  main {
+    width: 100%;
+    max-width: 95vw;
+    height: 100%;
+    max-height: 80vh;
+  }
+  h1 {
+    top: 5%;
+  }
+  .player {
+    width: 100%;
+    max-width: 47.5vw;
+    padding: 5%;
+  }
+  .dice {
+    height: 8rem;
+  }
+  .dice--1 {
+    transform: translate(-50%, 70%);
+  }
+  .dice--2 {
+    transform: translate(-50%, -50%);
+  }
 }
