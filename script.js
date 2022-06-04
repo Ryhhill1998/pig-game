@@ -14,11 +14,9 @@ const diceImgEl1 = document.querySelector(".dice--1");
 const diceImgEl2 = document.querySelector(".dice--2");
 
 const buttonsArray = document.querySelectorAll(".btn");
+const [newGameBtn, rollDiceBtn, holdScoreBtn] = buttonsArray;
 const iconsArray = document.querySelectorAll(".icon");
 
-const newGameBtn = document.querySelector(".btn--new");
-const rollDiceBtn = document.querySelector(".btn--roll");
-const holdScoreBtn = document.querySelector(".btn--hold");
 const infoBtn = document.querySelector(".info");
 const closeModalBtn = document.querySelector(".close-modal");
 
@@ -61,18 +59,11 @@ const showDice = function() {
   diceImgEl2.classList.remove("hidden");
 };
 
-const updateDiceImg = function(newImgSrc1, newImgSrc2) {
-  diceImgEl1.src = newImgSrc1;
-  diceImgEl2.src = newImgSrc2;
-};
+const updateDiceImg = (newImgSrc1, newImgSrc2) => [diceImgEl1.src, diceImgEl2.src] = [newImgSrc1, newImgSrc2];
 
-const updateCurrScore = function() {
-  document.getElementById(`current--${activePlayer}`).textContent = currentScore;
-};
+const updateCurrScore = () => document.getElementById(`current--${activePlayer}`).textContent = currentScore;
 
-const updateScore = function() {
-  document.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer];
-};
+const updateScore = () => document.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer];
 
 // create function to switch active player
 const switchPlayer = function() {
@@ -84,9 +75,7 @@ const switchPlayer = function() {
 };
 
 // create function to roll dice and return a number between 1 and 6
-const rollDice = function() {
-  return Math.floor(Math.random() * 6) + 1;
-};
+const rollDice = () => Math.floor(Math.random() * 6) + 1;
 
 // create function to check if dice roll is not 1 and add to player's current score
 const checkDiceRoll = function(diceRoll1, diceRoll2) {
@@ -103,9 +92,7 @@ const checkDiceRoll = function(diceRoll1, diceRoll2) {
 };
 
 // create function to check winner
-const checkPlayerWins = function() {
-  return scores[activePlayer] >= 100 ? true : false;
-};
+const checkPlayerWins = () => scores[activePlayer] >= 100 ? true : false;
 
 // create end game function
 const endGame = function() {
@@ -212,7 +199,5 @@ closeModalBtn.addEventListener("click", closeModal);
 overlay.addEventListener("click", closeModal);
 
 document.addEventListener("keydown", function(event) {
-  if (event.key === "Escape") {
-    closeModal();
-  }
+  if (event.key === "Escape") closeModal();
 });
