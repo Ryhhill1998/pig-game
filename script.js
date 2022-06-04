@@ -126,7 +126,7 @@ rollDiceBtn.addEventListener("click", function() {
 
 // add click event listener to hold button to add current score to player score
 holdScoreBtn.addEventListener("click", function() {
-  if (!gameOn) return;
+  if (!gameOn || currentScore === 0) return;
   scores[activePlayer] += currentScore;
   updateScore();
   if (checkPlayerWins()) {
