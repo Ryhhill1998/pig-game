@@ -8,11 +8,22 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&family=Odibee+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" integrity="sha384-/frq1SRXYH/bSyou/HUp/hib7RVN1TawQYja658FEOodR/FQBKVqT9Ol+Oz3Olq5" crossorigin="anonymous">
   </head>
   <body>
-    <h1>PIG GAME</h1>
+    <h1>PIG GAME<i class="fa-regular fa-circle-question info"></i></h1>
+    <div class="modal hidden">
+      <button class="close-modal">&times;</button>
+      <h2>HOW TO PLAY <i class="fa-solid fa-dice"></i></h2>
+      <p>Roll the dice to start the game.</p><br>
+      <p class="bold-line">If neither die shows a 1, the total score is added to your currect score.</p><br>
+      <p>Click hold to save the current score to your score. Play switches players.</p><br>
+      <p class="bold-line">If either die shows a 1, current score is set to 0. Play switches players.</p><br>
+      <p>If both dice show a 1, your score is reset to 0. Play switches players.</p><br>
+      <p class="bold-line">The first player to reach a score of 100 wins!</p>
+    </div>
+    <div class="overlay hidden"></div>
     <main>
       <section class="player player--0 player--active">
         <h2 class="name" id="name--0" contenteditable="true">Player 1</h2>
@@ -31,10 +42,11 @@
         </div>
       </section>
 
-      <img src="dice-5.png" alt="Playing dice" class="dice" />
-      <button class="btn btn--new"><i class="fa-solid fa-circle-plus"></i> New game</button>
-      <button class="btn btn--roll"><i class="fa-solid fa-rotate"></i> Roll dice</button>
-      <button class="btn btn--hold"><i class="fa-solid fa-circle-check"></i> Hold</button>
+      <img src="dice-5.png" alt="Playing dice" class="dice dice--1" />
+      <img src="dice-5.png" alt="Playing dice" class="dice dice--2" />
+      <button class="btn btn--new"><i class="icon fa-solid fa-circle-plus"></i> New game</button>
+      <button class="btn btn--roll"><i class="icon fa-solid fa-rotate"></i> Roll dice</button>
+      <button class="btn btn--hold"><i class="icon fa-solid fa-circle-check"></i> Hold</button>
     </main>
     <script src="script.js"></script>
   </body>

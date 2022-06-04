@@ -5,7 +5,7 @@
 }
 
 html {
-  font-size: 62.5%;
+  font-size: 0.625rem;
   box-sizing: border-box;
 }
 
@@ -21,10 +21,72 @@ body {
   justify-content: center;
 }
 
+/* CLASSES TO MAKE MODAL WORK */
+.hidden {
+  display: none;
+}
+
+h2 {
+  margin-bottom: 40px;
+  font-family: 'Odibee Sans', cursive;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-height: 90vh;
+  width: 100%;
+  max-width: 90vw;
+
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.8rem;
+  background-color: white;
+  padding: 8vh 6vw;
+  border-radius: 5px;
+  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(3px);
+  z-index: 5;
+}
+
+.show-modal {
+  font-size: 2rem;
+  font-weight: 600;
+  padding: 1.75rem 3.5rem;
+  margin: 5rem 2rem;
+  border: none;
+  background-color: #fff;
+  color: #444;
+  border-radius: 10rem;
+  cursor: pointer;
+}
+
+.close-modal {
+  position: absolute;
+  top: 1.2rem;
+  right: 2rem;
+  font-size: 5rem;
+  color: #333;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
 /* LAYOUT */
 h1 {
   font-size: 3rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.9);
   position: absolute;
   top: 8%;
   left: 50%;
@@ -34,7 +96,8 @@ h1 {
 
 main {
   position: relative;
-  width: 65vw;
+  width: 100%;
+  max-width: 65vw;
   height: 75vh;
   background-color: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(200px);
@@ -46,8 +109,9 @@ main {
 }
 
 .player {
-  flex: 50%;
-  padding: 9rem;
+  width: 100%;
+  max-width: 32.5vw;
+  padding: 9%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -100,7 +164,7 @@ main {
 .current-label {
   text-transform: uppercase;
   margin-bottom: 1rem;
-  font-size: 1.7vw;
+  font-size: 1.7rem;
   color: white;
 }
 
@@ -110,6 +174,7 @@ main {
 
 /* ABSOLUTE POSITIONED ELEMENTS */
 .btn {
+  font-family: 'Nunito', sans-serif;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -131,19 +196,48 @@ main {
 }
 
 .btn--new {
-  top: 4rem;
+  top: 35vh;
 }
 .btn--roll {
-  top: 39.3rem;
+  top: 52vh;
 }
 .btn--hold {
-  top: 46.1rem;
+  top: 60vh;
 }
 
 i {
-  margin-right: 10px;
+  margin-right: 2px;
   font-size: 2rem;
   color: #00ADB5;
+}
+
+.button-hovered {
+  margin-right: 8px;
+  transition: all 0.5s;
+}
+
+.button-unhovered {
+  margin-right: 2px;
+  transition: all 0.5s;
+}
+
+.info {
+  font-size: 2rem;
+  position: absolute;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+}
+
+.info-hovered {
+  color: white;
+  font-size: 2.4rem;
+  transition: all 0.5s;
+}
+
+.info-unhovered {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 2rem;
+  transition: all 0.5s;
 }
 
 .btn:active {
@@ -158,10 +252,17 @@ i {
 .dice {
   position: absolute;
   left: 50%;
-  top: 16.5rem;
-  transform: translateX(-50%);
+  top: 30vh;
   height: 10rem;
   box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.2);
+}
+
+.dice--1 {
+  transform: translateX(-120%);
+}
+
+.dice--2 {
+  transform: translateX(20%);
 }
 
 .hidden {
@@ -175,4 +276,37 @@ i {
 .player--winner .name {
   font-weight: 700;
   color: #00ADB5;
+}
+
+/* media queries */
+@media all and (max-width: 768px) {
+  main {
+    width: 100%;
+    max-width: 95vw;
+    height: 100%;
+    max-height: 80vh;
+  }
+  h1 {
+    top: 5%;
+  }
+  .player {
+    width: 100%;
+    max-width: 47.5vw;
+    padding: 5%;
+  }
+  .dice {
+    height: 8rem;
+  }
+  .dice--1 {
+    transform: translate(-50%, 70%);
+  }
+  .dice--2 {
+    transform: translate(-50%, -50%);
+  }
+}
+
+@media all and (min-width: 1080px) {
+  .modal {
+    width: 60%;
+  }
 }
